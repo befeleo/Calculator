@@ -1,5 +1,5 @@
 const display = document.getElementById('display')
-const buttons = document.querySelectorAll('.button')
+const buttons = document.querySelectorAll('button')
 
 let currentInput = ''
 let previousInput = ''
@@ -28,6 +28,18 @@ const calculate = (a, operator, b) => {
         default:
             break;
     }
-
 }
 
+const operand = (value) => {
+    currentInput += value
+    calculateDisplay(currentInput)
+}
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        const value = button.textContent
+
+        if (button.classList.contains('operand'))
+            operand(value)
+    })
+})
