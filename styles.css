@@ -39,6 +39,7 @@ button {
   font-size: 1.7em;
   background-color: #000;
   color: #fff;
+  cursor: pointer;
 }
 
 .clear {
@@ -49,4 +50,8 @@ button {
 }
 .equals {
   background-color: #32cd32;
+  grid-row: span 2;
+}
+.zero {
+  grid-column: span 2;
 }
