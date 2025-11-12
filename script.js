@@ -14,21 +14,16 @@ const calculate = (a, operator, b) => {
 
     switch (operator) {
         case '+':
-            return a + b
-            break;
+            return parseFloat((a + b).toFixed(2))
         case '-':
-            return a - b
-            break;
+            return parseFloat((a - b).toFixed(2))
         case '*':
-            return a * b
-            break;
+            return parseFloat((a * b).toFixed(2))
         case '/':
-            if (b === 0)
-                return "Error"
-            return a / b
-            break;
+            if (b === 0) return "Error"
+            return parseFloat((a / b).toFixed(2))
         default:
-            break;
+            return ''
     }
 }
 
