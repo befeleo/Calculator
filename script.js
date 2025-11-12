@@ -60,6 +60,12 @@ const handleBackspace = () => {
     currentInput = currentInput.slice(0, -1)
     calculateDisplay(currentInput)
 }
+const handleDecimal = () => {
+    if (!currentInput.includes('.')) {
+        currentInput += '.'
+        calculateDisplay(currentInput)
+    }
+}
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -75,5 +81,7 @@ buttons.forEach(button => {
             handleClear()
         else if (button.classList.contains('backspace'))
             handleBackspace()
+        else if (button.classList.contains('decimal'))
+            handleDecimal()
     })
 })
