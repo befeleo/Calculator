@@ -76,9 +76,15 @@ const handleClear = () => {
 }
 
 const handleBackspace = () => {
-    currentInput = currentInput.slice(0, -1)
-    calculateDisplay(currentInput)
+    if (currentInput) {
+        currentInput = currentInput.slice(0, -1)
+        calculateDisplay(currentInput || '0')
+    } else if (previousInput && !operator) {
+        previousInput = previousInput.slice(0, -1)
+        calculateDisplay(previousInput || '0')
+    }
 }
+
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
