@@ -42,6 +42,11 @@ const handleOperator = (value) => {
     calculateDisplay(operator)
 }
 
+const handleEquals = () => {
+    const result = calculate(previousInput, operator, currentInput)
+    calculateDisplay(result)
+}
+
 const handleClear = () => {
     currentInput = ''
     previousInput = ''
@@ -60,6 +65,8 @@ buttons.forEach(button => {
 
         if (button.classList.contains('operand'))
             handleOperand(value)
+        else if (button.classList.contains('equals'))
+            handleEquals()
         else if (button.classList.contains('operator'))
             handleOperator(value)
         else if (button.classList.contains('clear'))
