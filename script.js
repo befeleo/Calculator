@@ -90,7 +90,7 @@ buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent
 
-        if (button.classList.contains('operand') && !button.classList.contains('decimal'))
+        if (button.classList.contains('operand'))
             handleOperand(value)
         else if (button.classList.contains('decimal'))
             handleDecimal()
