@@ -1,13 +1,17 @@
 const display = document.getElementById('display')
 const buttons = document.querySelectorAll('button')
 
+// Initial Values
 let currentInput = ''
 let previousInput = ''
 let operator = null
 
+// Display
 const updateDisplay = (value) => {
     display.textContent = value
 }
+
+// Methods
 const calculate = (a, operator, b) => {
     a = parseFloat(a)
     b = parseFloat(b)
@@ -38,6 +42,7 @@ const handleDecimal = () => {
         updateDisplay(currentInput)
     }
 }
+
 const handleOperator = (value) => {
     if (!currentInput && !previousInput) return
     if (previousInput && operator && currentInput) {
@@ -80,7 +85,7 @@ const handleBackspace = () => {
     }
 }
 
-
+// Button
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent
@@ -100,7 +105,7 @@ buttons.forEach(button => {
     })
 })
 
-
+// Keyboard 
 document.addEventListener('keydown', (e) => {
     const key = e.key
 
