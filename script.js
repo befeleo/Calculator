@@ -42,6 +42,13 @@ const handleOperator = (value) => {
     calculateDisplay(operator)
 }
 
+const handleClear = () => {
+    currentInput = ''
+    previousInput = ''
+    operator = null
+    calculateDisplay('0')
+}
+
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent
@@ -50,5 +57,7 @@ buttons.forEach(button => {
             handleOperand(value)
         else if (button.classList.contains('operator'))
             handleOperator(value)
+        else if (button.classList.contains('clear'))
+            handleClear()
     })
 })
