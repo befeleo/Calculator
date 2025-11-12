@@ -5,7 +5,7 @@ let currentInput = ''
 let previousInput = ''
 let operator = null
 
-const calculateDisplay = (value) => {
+const updateDisplay = (value) => {
     display.textContent = value
 }
 const calculate = (a, operator, b) => {
@@ -29,13 +29,13 @@ const calculate = (a, operator, b) => {
 
 const handleOperand = (value) => {
     currentInput += value
-    calculateDisplay(currentInput)
+    updateDisplay(currentInput)
 }
 
 const handleDecimal = () => {
     if (!currentInput.includes('.')) {
         currentInput += currentInput ? '.' : '0.'
-        calculateDisplay(currentInput)
+        updateDisplay(currentInput)
     }
 }
 const handleOperator = (value) => {
@@ -43,7 +43,7 @@ const handleOperator = (value) => {
     if (previousInput && operator && currentInput) {
         const result = calculate(previousInput, operator, currentInput)
         previousInput = result
-        calculateDisplay(previousInput)
+        updateDisplay(previousInput)
         currentInput = ''
     }
     else {
@@ -56,7 +56,7 @@ const handleOperator = (value) => {
 const handleEquals = () => {
     if (previousInput && operator && currentInput) {
         const result = calculate(previousInput, operator, currentInput)
-        calculateDisplay(result)
+        updateDisplay(result)
         previousInput = result.toString()
         currentInput = ''
         operator = null
@@ -67,16 +67,16 @@ const handleClear = () => {
     currentInput = ''
     previousInput = ''
     operator = null
-    calculateDisplay('0')
+    updateDisplay('0')
 }
 
 const handleBackspace = () => {
     if (currentInput) {
         currentInput = currentInput.slice(0, -1)
-        calculateDisplay(currentInput || '0')
+        updateDisplay(currentInput || '0')
     } else if (previousInput && !operator) {
         previousInput = previousInput.slice(0, -1)
-        calculateDisplay(previousInput || '0')
+        updateDisplay(previousInput || '0')
     }
 }
 
@@ -89,7 +89,7 @@ buttons.forEach(button => {
             handleOperand(value)
         else if (button.classList.contains('decimal'))
             handleDecimal()
-        else if (button.classList.contains('operator') && !button.classList.contains('equals'))
+        else if (button.classList.contains('operator'))
             handleOperator(value)
         else if (button.classList.contains('equals'))
             handleEquals()
@@ -98,4 +98,22 @@ buttons.forEach(button => {
         else if (button.classList.contains('backspace'))
             handleBackspace()
     })
+})
+
+
+document.addEventListener('keydown', (e) => {
+    const key = e.key
+
+    if (key >= '0' && key <= '9')
+        handleOperand(key)
+    else if (key === '.')
+        handleDecimal()
+    else if (key === '+' || key === '-' || key === '*' || key === '/')
+        handleOperator(key)
+    else if (key === 'Enter' || key === '=')
+        handleEquals()
+    else if (key === 'Delete' || key === 'Escape')
+        handleClear()
+    else if (key === 'Backspace')
+        handleBackspace()
 })
