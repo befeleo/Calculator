@@ -49,6 +49,11 @@ const handleClear = () => {
     calculateDisplay('0')
 }
 
+const handleBackspace = () => {
+    currentInput = currentInput.slice(0, -1)
+    calculateDisplay(currentInput)
+}
+
 buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent
@@ -59,5 +64,7 @@ buttons.forEach(button => {
             handleOperator(value)
         else if (button.classList.contains('clear'))
             handleClear()
+        else if (button.classList.contains('backspace'))
+            handleBackspace()
     })
 })
