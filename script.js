@@ -44,15 +44,21 @@ const handleDecimal = () => {
     }
 }
 const handleOperator = (value) => {
-    previousInput = currentInput
+    if (!currentInput && !previousInput) return
+    previousInput = currentInput || previousInput
     currentInput = ''
     operator = value
     calculateDisplay(operator)
 }
 
 const handleEquals = () => {
-    const result = calculate(previousInput, operator, currentInput)
-    calculateDisplay(result)
+    if (previousInput && operator && currentInput) {
+        const result = calculate(previousInput, operator, currentInput)
+        calculateDisplay(result)
+        previousInput = result
+        currentInput = ''
+        operator = null
+    }
 }
 
 const handleClear = () => {
@@ -75,7 +81,7 @@ buttons.forEach(button => {
             handleOperand(value)
         else if (button.classList.contains('decimal'))
             handleDecimal()
-        else if (button.classList.contains('operator'))
+        else if (button.classList.contains('operator') && !button.classList.contains('equals'))
             handleOperator(value)
         else if (button.classList.contains('equals'))
             handleEquals()
