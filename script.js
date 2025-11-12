@@ -30,9 +30,16 @@ const calculate = (a, operator, b) => {
     }
 }
 
-const operand = (value) => {
+const handleOperand = (value) => {
     currentInput += value
     calculateDisplay(currentInput)
+}
+
+const handleOperator = (value) => {
+    previousInput = currentInput
+    currentInput = ''
+    operator = value
+    calculateDisplay(operator)
 }
 
 buttons.forEach(button => {
@@ -40,6 +47,8 @@ buttons.forEach(button => {
         const value = button.textContent
 
         if (button.classList.contains('operand'))
-            operand(value)
+            handleOperand(value)
+        else if (button.classList.contains('operator'))
+            handleOperator(value)
     })
 })
