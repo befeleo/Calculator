@@ -45,17 +45,24 @@ const handleDecimal = () => {
 }
 const handleOperator = (value) => {
     if (!currentInput && !previousInput) return
-    previousInput = currentInput || previousInput
-    currentInput = ''
+    if (previousInput && operator && currentInput) {
+        const result = calculate(previousInput, operator, currentInput)
+        previousInput = result
+        calculateDisplay(previousInput)
+        currentInput = ''
+    }
+    else {
+        previousInput = currentInput || previousInput
+        currentInput = ''
+    }
     operator = value
-    calculateDisplay(operator)
 }
 
 const handleEquals = () => {
     if (previousInput && operator && currentInput) {
         const result = calculate(previousInput, operator, currentInput)
         calculateDisplay(result)
-        previousInput = result
+        previousInput = result.toString()
         currentInput = ''
         operator = null
     }
