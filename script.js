@@ -9,6 +9,8 @@ const calculateDisplay = (value) => {
     display.textContent = value
 }
 const calculate = (a, operator, b) => {
+    a = parseFloat(a)
+    b = parseFloat(b)
 
     switch (operator) {
         case '+':
