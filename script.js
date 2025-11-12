@@ -39,7 +39,7 @@ const handleOperand = (value) => {
 
 const handleDecimal = () => {
     if (!currentInput.includes('.')) {
-        currentInput += '.'
+        currentInput += currentInput ? '.' : '0.'
         calculateDisplay(currentInput)
     }
 }
@@ -90,7 +90,7 @@ buttons.forEach(button => {
     button.addEventListener('click', () => {
         const value = button.textContent
 
-        if (button.classList.contains('operand'))
+        if (button.classList.contains('operand') && !button.classList.contains('decimal'))
             handleOperand(value)
         else if (button.classList.contains('decimal'))
             handleDecimal()
