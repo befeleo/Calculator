@@ -37,6 +37,12 @@ const handleOperand = (value) => {
     calculateDisplay(currentInput)
 }
 
+const handleDecimal = () => {
+    if (!currentInput.includes('.')) {
+        currentInput += '.'
+        calculateDisplay(currentInput)
+    }
+}
 const handleOperator = (value) => {
     previousInput = currentInput
     currentInput = ''
@@ -60,12 +66,6 @@ const handleBackspace = () => {
     currentInput = currentInput.slice(0, -1)
     calculateDisplay(currentInput)
 }
-const handleDecimal = () => {
-    if (!currentInput.includes('.')) {
-        currentInput += '.'
-        calculateDisplay(currentInput)
-    }
-}
 
 buttons.forEach(button => {
     button.addEventListener('click', () => {
@@ -73,15 +73,15 @@ buttons.forEach(button => {
 
         if (button.classList.contains('operand'))
             handleOperand(value)
-        else if (button.classList.contains('equals'))
-            handleEquals()
+        else if (button.classList.contains('decimal'))
+            handleDecimal()
         else if (button.classList.contains('operator'))
             handleOperator(value)
+        else if (button.classList.contains('equals'))
+            handleEquals()
         else if (button.classList.contains('clear'))
             handleClear()
         else if (button.classList.contains('backspace'))
             handleBackspace()
-        else if (button.classList.contains('decimal'))
-            handleDecimal()
     })
 })
