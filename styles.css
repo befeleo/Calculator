@@ -8,6 +8,7 @@
   src: url(font/digital-7.ttf);
 }
 body {
+  background-color: #7795be;
   display: flex;
   justify-content: center;
   align-items: center;
